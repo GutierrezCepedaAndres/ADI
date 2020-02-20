@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block body %}
+    <form action="{{ url_for('tweet') }}"  method=post>
+      <p>
+	Text: 
+        <input type=text name=tweetText size=40>
+        <input type=submit value="Tweet">
+      </p>
+    </form>
+
+
+    <form action="{{ url_for('deleteTweet') }}"  method=post>
+      <p>
+  Tweet ID: 
+        <input type=text name=tweetIDDL size=20>
+        <input type=submit value="Delete">
+      </p>
+    </form>
+  
+    <form action="{{ url_for('retweet') }}"  method=post>
+      <p>
+  Tweet ID: 
+        <input type=text name=tweetIDRT size=20>
+        <input type=submit value="Retweet">
+      </p>
+    </form>
+
+    <form action="{{ url_for('follow') }}"  method=post>
+      <p>
+  User ID: 
+        <input type=text name=userID size=20>
+  User: 
+        <input type=text name=userName size=20>
+        <input type=submit value="Follow">
+       </p>
+    </form>
+
+<!--Tweets-->
+    <br/>
+    <h3>Mis tweets</h3>
+
+   <br /><br />
+    <body>
+      {% if user %}
+        {% for e in tweets %}
+            *     {{e.id_str}}       {{e.text}} <br />
+        {% endfor %}
+      {% endif %} 
+  </body>
+    
+{% endblock %}
